@@ -23,14 +23,9 @@ public class ProductController {
 
     @PostMapping("/save")
     public ResponseEntity<Product> saveProduct(@RequestBody ProductDTO productDTO){
-        System.out.println(productDTO.getDesc());
-        Product from = productMapper.from(productDTO);
-        System.out.println(from);
-        Product save = productRepository.save(from);
-        System.out.println(save);
 
         return new ResponseEntity<>
-                (save, HttpStatus.CREATED);
+                (productRepository.save(productMapper.from(productDTO)), HttpStatus.CREATED);
 
     }
 
